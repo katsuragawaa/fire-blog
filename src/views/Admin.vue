@@ -7,11 +7,12 @@
 				div.input
 					input(placeholder="Digite o email do usuário" type="text" id="add-admin" v-model="adminEmail")
 				span {{ this.functionMessage }}
-				button.button Enviar
+				button.button(@click="addAdmin") Enviar
 </template>
 
 <script>
-
+import firebase from 'firebase/app';
+import 'firebase/functions';
 
 export default {
   name: 'admin',
@@ -20,6 +21,17 @@ export default {
       adminEmail: '',
       functionMessage: null,
     };
+  },
+  methods: {
+    async addAdmin() {
+      if (this.adminEmail === '') {
+				this.functionMessage = 'Preencha o campo primeiro'
+				return
+			}
+      const addAdmin = firebase.functions().httpsCallable('addAdminRole');
+      const result = await addAdmin({ email: this.adminEmail });
+      this.functionMessage = await result.data.message;
+    },
   },
 };
 </script>

@@ -11,7 +11,7 @@ exports.addAdminRole = functions.https.onCall(async (data) => {
 		await admin.auth().setCustomUserClaims(user.uid, {
 			admin: true,
 		});
-		return { message: `Success! ${data.email} has been made an admin` };
+		return { message: `Sucesso! ${data.email} é agora um admin` };
 	} catch (err) {
 		console.log(err);
 	}
