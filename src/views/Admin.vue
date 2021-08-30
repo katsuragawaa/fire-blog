@@ -3,7 +3,7 @@
 		div.container
 			h2 Admin
 			div.admin-info
-				h2 Adcionar administradores
+				h2 Adicionar administradores
 				div.input
 					input(placeholder="Digite o email do usuário" type="text" id="add-admin" v-model="adminEmail")
 				span {{ this.functionMessage }}
